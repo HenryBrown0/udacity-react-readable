@@ -1,9 +1,8 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 
-const Post = (props) => {
-	const { title, body, author, voteScore, commentCount } = props;
-	const date = new Date(props.timestamp).toDateString();
+const Basic = (props) => {
+	const { date, title, body, author, voteScore, commentCount } = props;
 	return (
 		<div className="card fluid">
 			<div className="section left">
@@ -30,4 +29,4 @@ const Post = (props) => {
   );
 }
 
-export default Post;
+export default Basic;

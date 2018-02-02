@@ -4,3 +4,6 @@
 .left{
 	text-align: left;
 }
+.modalTitle{
+	padding-right: calc(24px + 0.5rem) !important;
+}

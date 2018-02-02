@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 //components
-import Post from './Post';
+import Post from './Post/Post';
 
 const CategoryPanel = (props) => {
 	const { category, posts } = props;
@@ -16,6 +16,7 @@ const CategoryPanel = (props) => {
 					posts.map(p =>
 						<Post
 							key={p.id}
+							id={p.id}
 							timestamp={p.timestamp}
 							title={p.title}
 							body={p.body}
