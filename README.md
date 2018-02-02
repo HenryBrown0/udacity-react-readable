@@ -1,16 +1,16 @@
 # Udacity React Readable
 This is the second project I've made for the Udacity nanodegree course.
-# Installation
-## Readable API Server
+## Installation
+### Readable API Server
 * Install and start the API server
 	- `cd api-server`
 	- `npm install`
 	- `node server`
 
-## Readable Frontend
+### Readable Frontend
 * Install and start the frontend
 	- `cd frontend`
 	- `npm install`
 	- `npm start`
-# Contributors
+## Contributors
 Henry Brown
