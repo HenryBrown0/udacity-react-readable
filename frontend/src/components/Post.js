@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 
 const Post = (props) => {
-	const { timestamp, title, body, author, voteScore, commentCount } = props;
+	const { title, body, author, voteScore, commentCount } = props;
+	const date = new Date(props.timestamp).toDateString();
 	return (
 		<div className="card fluid">
 			<div className="section left">
@@ -22,7 +23,7 @@ const Post = (props) => {
 						: `${commentCount} comments`
 					}
 					</div>
-					<div className="col-sm-4">{timestamp}</div>
+					<div className="col-sm-4">{ date }</div>
 				</div>
 			</div>
 		</div>
