@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 const Post = (props) => {
@@ -17,7 +17,7 @@ const Post = (props) => {
 					<div class="col-sm-4">{voteScore}</div>
 					<div class="col-sm-4">
 					{
-						commentCount == 1
+						commentCount === 1
 						? `${commentCount} comment`
 						: `${commentCount} comments`
 					}
