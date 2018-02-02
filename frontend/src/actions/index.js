@@ -16,7 +16,7 @@ export function addPost ({ id, title }) {
 export function fetchPosts(){
 	const request = axios.get(`${URL}posts`,{headers});
 	return dispatch => {
-		request.then(({data})=> {
+		request.then(({data}) => {
 			dispatch({
 				type: FETCH_POSTS,
 				payload: data
@@ -24,3 +24,5 @@ export function fetchPosts(){
 		})
 	}
 }
+
+fetchPosts();

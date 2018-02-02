@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { fetchPosts } from '../actions';
 import './App.css';
 //components
 import Post from './Post';
 
 const App = (props) => {
-	const { react, redux, udacity } = props;
+	const { react, redux, udacity, fetchPosts } = props;
 	return (
 		<div className="container">
 			<div className="row">
 				<div className="col-sm-12">
-					<h1>Readable</h1>
+					<h1 onClick={() => fetchPosts()}>Readable</h1>
 				</div>
 			</div>
 			<div className="row">
@@ -85,16 +86,17 @@ const App = (props) => {
 	);
 }
 
-function mapStateToProps ({ post }) {
+function mapStateToProps ({ posts }) {
   return {
-		react: post.react,
-		redux: post.redux,
-		udacity: post.udacity
+		react: posts.react,
+		redux: posts.redux,
+		udacity: posts.udacity
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
+		fetchPosts: (data) => dispatch(fetchPosts(data))
   }
 }
 
