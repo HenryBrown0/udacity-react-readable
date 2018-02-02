@@ -13,16 +13,16 @@ const Post = (props) => {
 				<p>{body}</p>
 			</div>
 			<div className="container section">
-				<div class="row">
-					<div class="col-sm-4">{voteScore}</div>
-					<div class="col-sm-4">
+				<div className="row">
+					<div className="col-sm-4">{voteScore}</div>
+					<div className="col-sm-4">
 					{
 						commentCount === 1
 						? `${commentCount} comment`
 						: `${commentCount} comments`
 					}
 					</div>
-					<div class="col-sm-4">{timestamp}</div>
+					<div className="col-sm-4">{timestamp}</div>
 				</div>
 			</div>
 		</div>
