@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
 
 const Basic = (props) => {
 	const { date, title, body, author, voteScore, commentCount } = props;
@@ -14,7 +15,11 @@ const Basic = (props) => {
 			</div>
 			<div className="container section">
 				<div className="row">
-					<div className="col-sm-4">{voteScore}</div>
+					<div className="col-sm-4">
+						<MdArrowDropUp height="2em" width="2em" className="btn up" />
+						{voteScore}
+						<MdArrowDropDown height="2em" width="2em" className="btn down" />
+					</div>
 					<div className="col-sm-4">
 					{
 						commentCount === 1

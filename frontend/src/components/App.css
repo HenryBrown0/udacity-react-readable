@@ -7,3 +7,12 @@
 .modalTitle{
 	padding-right: calc(24px + 0.5rem) !important;
 }
+.btn{
+	cursor: pointer;
+}
+.up:hover{
+	color: green;
+}
+.down:hover{
+	color: red;
+}
