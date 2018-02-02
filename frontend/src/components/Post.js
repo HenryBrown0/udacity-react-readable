@@ -3,7 +3,7 @@ import './App.css';
 
 const Post = (props) => {
 	const { timestamp, title, body, author, voteScore, commentCount } = props;
-  return (
+	return (
 		<div className="card fluid">
 			<div className="section left">
 				<h3>
@@ -16,11 +16,11 @@ const Post = (props) => {
 				<div class="row">
 					<div class="col-sm-4">{voteScore}</div>
 					<div class="col-sm-4">
-						{
-							commentCount == 1
-							? `${commentCount} comment`
-							: `${commentCount} comments`
-						}
+					{
+						commentCount == 1
+						? `${commentCount} comment`
+						: `${commentCount} comments`
+					}
 					</div>
 					<div class="col-sm-4">{timestamp}</div>
 				</div>
