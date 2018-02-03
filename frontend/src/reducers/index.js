@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
+import posts from './posts';
 
 import {
 	FETCH_CATEGORIES,
-	FETCH_POSTS,
 } from '../actions';
 
 function app(state = {}, action){
@@ -13,17 +13,12 @@ function app(state = {}, action){
 				...state,
 				categories
 			}
-		case FETCH_POSTS :
-			const { posts } = action;
-			return {
-				...state,
-				posts
-			}
 		default :
 			return state
 	}
 }
 
 export default combineReducers({
-	app
+	app,
+	posts
 })
