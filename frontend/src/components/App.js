@@ -4,25 +4,29 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions';
 //Router
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 //Components
 import './App.css';
+import Header from './Header';
 import Home from './Home';
 import NotFound from './NotFound';
 
 const App = (props) => {
-	const { categories, fetchPosts } = props;
+	const { fetchPosts } = props;
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-sm-12">
-					<h1 onClick={() => fetchPosts()}>Readable</h1>
+		<div>
+			<Header />
+			<div className="container">
+				<div className="row">
+					<div className="col-sm-12">
+						<h1 onClick={() => fetchPosts()}>Readable</h1>
+					</div>
 				</div>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route path="*" component={NotFound} />
+				</Switch>
 			</div>
-			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route path="*" component={NotFound} />
-			</Switch>
 		</div>
 	);
 }
@@ -50,7 +54,7 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(
+export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+))(App)

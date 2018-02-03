@@ -2,13 +2,12 @@
 import React from 'react';
 //Redux
 import { connect } from 'react-redux'
-import { fetchPosts } from '../actions';
 //Components
 import './App.css';
 import CategoryPanel from './CategoryPanel';
 
 const Home = (props) => {
-	const { categories, fetchPosts } = props;
+	const { categories } = props;
 	return (
 		<div>
 			<div className="row">
@@ -45,7 +44,6 @@ function mapStateToProps ({ posts }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		fetchPosts: (data) => dispatch(fetchPosts(data))
   }
 }
 
