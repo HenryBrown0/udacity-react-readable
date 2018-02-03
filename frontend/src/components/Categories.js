@@ -22,7 +22,7 @@ class Home extends Component {
 						categories
 							? categories.map(c =>
 								<li key={c.path}>
-									<Link to={c.path+"/"}>{c.name}</Link>
+									<Link to={"/category/"+c.path+"/"}>{c.name}</Link>
 								</li>)
 							: null
 					}
