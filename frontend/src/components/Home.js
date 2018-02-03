@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
 import { fetchCategories, fetchPosts } from '../actions';
+//Router
+import { Link } from 'react-router-dom';
 //Components
 import './App.css';
 import CategoryPanel from './CategoryPanel';
@@ -19,11 +21,18 @@ class Home extends Component {
 				<div className="row">
 				{
 					categories && posts ? categories.map(c =>
-						<CategoryPanel
-							key={c.path}
-							category={c.category}
-							posts={posts.filter(p => p.category === c.path)}
-						/>
+						<div key={c.path} className="col-sm-12 col-md-6 col-lg-4">
+							<h2>
+								{c.name}
+								<small>
+									<Link to={"category/"+c.path+"/"}>View categorie individually</Link>
+								</small>
+							</h2>
+							<CategoryPanel
+								category={c.name}
+								posts={posts.filter(p => p.category === c.path)}
+							/>
+						</div>
 					) : null
 				}
 				</div>

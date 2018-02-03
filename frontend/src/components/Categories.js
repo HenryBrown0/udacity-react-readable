@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions';
+//Router
+import { Link } from 'react-router-dom';
 //Components
 import './App.css';
 //Content
@@ -18,7 +20,10 @@ class Home extends Component {
 					<ul>
 					{
 						categories
-							? categories.map(c => <li key={c.path}>{c.path}</li>)
+							? categories.map(c =>
+								<li key={c.path}>
+									<Link to={c.path+"/"}>{c.name}</Link>
+								</li>)
 							: null
 					}
 					</ul>
