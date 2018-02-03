@@ -1,26 +1,23 @@
 import { combineReducers } from 'redux';
 
 import {
-	ADD_POST,
+	FETCH_CATEGORIES,
 	FETCH_POSTS,
 } from '../actions';
 
-function posts(state = {}, action){
+function app(state = {}, action){
 	switch (action.type){
-		case ADD_POST :
-			const { post } = action
+		case FETCH_CATEGORIES :
+			const { categories } = action;
 			return {
 				...state,
-				post: post
+				categories
 			}
 		case FETCH_POSTS :
-			const { payload } = action;
-			console.log(payload)
+			const { posts } = action;
 			return {
 				...state,
-				react: payload.filter(p => p.category === 'react'),
-				redux: payload.filter(p => p.category === 'redux'),
-				udacity: payload.filter(p => p.category === 'udacity')
+				posts
 			}
 		default :
 			return state
@@ -28,5 +25,5 @@ function posts(state = {}, action){
 }
 
 export default combineReducers({
-	posts,
+	app
 })
