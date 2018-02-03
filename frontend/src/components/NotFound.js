@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
 
 const NotFound = (props) => {
-	const { date, title, body, author, voteScore, commentCount } = props;
 	return (
 		<div className="row">
 			<div className="col-sm-12 col-md-6 col-lg-4 col-md-offset-3
