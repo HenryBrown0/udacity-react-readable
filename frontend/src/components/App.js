@@ -5,10 +5,10 @@ import { Route, Switch } from 'react-router-dom';
 //Components
 import './App.css';
 import Header from './Header';
-import Home from './Home';
-import Categories from './Categories';
-import Category from './Category';
-import NotFound from './NotFound';
+import Home from './Pages/Home';
+import Categories from './Pages/Categories';
+import Category from './Pages/Category';
+import NotFound from './Pages/NotFound';
 
 const App = (props) => {
 	return (
