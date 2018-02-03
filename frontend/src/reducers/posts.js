@@ -10,17 +10,17 @@ function posts(state = {}, action){
 		case FETCH_POSTS :
 			return {
 				...state,
-				posts: lodash.unionBy(state.posts, action.posts, 'id')
+				post: lodash.unionBy(state.post, action.posts, 'id')
 			}
 		case FETCH_CATEGORY_POSTS :
 			return {
 				...state,
-				posts: lodash.unionBy(state.posts, action.categoryPosts, 'id')
+				post: lodash.unionBy(state.post, action.categoryPosts, 'id')
 			}
 		case FETCH_POST :
 			return {
 				...state,
-				posts: lodash.unionBy(state.posts, action.post, 'id')
+				post: lodash.unionBy(state.post, action.post, 'id')
 			}
 		default :
 			return state

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 //Components
 import '../App.css';
 //Content
-class Home extends Component {
+class Categories extends Component {
 	componentDidMount(){
 		this.props.fetchCategories();
 	}
@@ -48,4 +48,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(Categories)

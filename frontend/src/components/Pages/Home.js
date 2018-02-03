@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
-import { fetchCategories } from '../../actions';
+import { fetchCategories, fetchPosts } from '../../actions';
 //Router
 import { Link } from 'react-router-dom';
 //Components
@@ -12,6 +12,7 @@ import CategoryPanel from '../Category/CategoryPanel';
 class Home extends Component {
 	componentDidMount(){
 		this.props.fetchCategories();
+		this.props.fetchPosts();
 	}
 	render() {
 		const { categories } = this.props;
@@ -45,7 +46,8 @@ function mapStateToProps ({ app }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		fetchCategories: (data) => dispatch(fetchCategories(data))
+		fetchCategories: (data) => dispatch(fetchCategories(data)),
+		fetchPosts: (data) => dispatch(fetchPosts(data))
   }
 }
 

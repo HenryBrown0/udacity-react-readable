@@ -2,7 +2,7 @@
 import React from 'react';
 //Components
 import '../App.css';
-import CategoryPanel from '../Category/CategoryPanel';
+import GetCategory from '../Category/GetCategory';
 //Content
 const Category = ({ match }) => {
 	const category = match.params.category;
@@ -12,7 +12,7 @@ const Category = ({ match }) => {
 			<h2>
 				{category}
 			</h2>
-				<CategoryPanel category={category} />
+				<GetCategory category={category} />
 		</div>
 	)
 }
