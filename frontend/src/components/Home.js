@@ -3,26 +3,25 @@ import React from 'react';
 //Redux
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions';
-//Router
-import { Route, Switch, Link } from 'react-router-dom';
 //Components
 import './App.css';
-import Home from './Home';
-import NotFound from './NotFound';
+import CategoryPanel from './CategoryPanel';
 
-const App = (props) => {
+const Home = (props) => {
 	const { categories, fetchPosts } = props;
 	return (
-		<div className="container">
+		<div>
 			<div className="row">
-				<div className="col-sm-12">
-					<h1 onClick={() => fetchPosts()}>Readable</h1>
-				</div>
+			{
+				categories.map(c =>
+					<CategoryPanel
+						key={c.category}
+						category={c.category}
+						posts={c.posts}
+					/>
+				)
+			}
 			</div>
-			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route path="*" component={NotFound} />
-			</Switch>
 		</div>
 	);
 }
@@ -53,4 +52,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(Home)
