@@ -14,14 +14,13 @@ class GetCategory extends Component {
 		this.props.fetchCategoryPosts(this.props.category);
 	}
 	render() {
-		const { category, posts } = this.props;
+		const { category } = this.props;
 		return (<CategoryPanel category={category} />);
 	}
 }
 
 function mapStateToProps ({ posts }) {
   return {
-		posts
   }
 }
 

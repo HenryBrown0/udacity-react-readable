@@ -25,7 +25,7 @@ const App = (props) => {
 					<Route exact path="/" component={Home} />
 					<Route exact path="/categories/" component={Categories} />
 					<Route exact path="/category/:category" component={Category} />
-					<Route exact path="/category/post/:post" component={Post} />
+					<Route exact path="/:category/:postID/" component={Post} />
 					<Route path="*" component={NotFound} />
 				</Switch>
 			</div>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const FETCH_POST = 'FETCH_POST';
@@ -19,25 +18,13 @@ export function fetchCategories(){
 	}
 }
 
-export function fetchPosts(){
-	const request = axios.get(`${URL}posts`,{headers});
-	return dispatch => {
-		request.then(({data}) => {
-			dispatch({
-				type: FETCH_POSTS,
-				posts: data
-			})
-		})
-	}
-}
-
 export function fetchCategoryPosts(category){
 	const request = axios.get(`${URL}${category}/posts`,{headers});
 	return dispatch => {
 		request.then(({data}) => {
 			dispatch({
 				type: FETCH_CATEGORY_POSTS,
-				categoryPosts: data
+				categoryPosts: { category: category, posts: data}
 			})
 		})
 	}

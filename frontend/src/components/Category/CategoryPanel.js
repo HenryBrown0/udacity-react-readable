@@ -9,8 +9,8 @@ import Post from '../Post/Post';
 //Content
 const CategoryPanel = (props) => {
 	const { category, posts } = props;
-	const categoryPosts = posts.post ? posts.post.length !== 0
-		? posts.post.filter(p => p.category === category)
+	const categoryPosts = posts[category] ? posts[category].length !== 0
+		? posts[category].filter(p => p.category === category)
 		: [] : []
 	return (
 		<div>

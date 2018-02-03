@@ -2,17 +2,16 @@
 import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
-import { fetchCategories, fetchPosts } from '../../actions';
+import { fetchCategories } from '../../actions';
 //Router
 import { Link } from 'react-router-dom';
 //Components
 import '../App.css';
-import CategoryPanel from '../Category/CategoryPanel';
+import GetCategory from '../Category/GetCategory';
 //Content
 class Home extends Component {
 	componentDidMount(){
 		this.props.fetchCategories();
-		this.props.fetchPosts();
 	}
 	render() {
 		const { categories } = this.props;
@@ -28,7 +27,7 @@ class Home extends Component {
 									<Link to={"category/"+c.path+"/"}>View categorie individually</Link>
 								</small>
 							</h2>
-							<CategoryPanel category={c.name} />
+							<GetCategory category={c.name} />
 						</div>
 					) : null
 				}
@@ -47,7 +46,6 @@ function mapStateToProps ({ app }) {
 function mapDispatchToProps (dispatch) {
   return {
 		fetchCategories: (data) => dispatch(fetchCategories(data)),
-		fetchPosts: (data) => dispatch(fetchPosts(data))
   }
 }
 
