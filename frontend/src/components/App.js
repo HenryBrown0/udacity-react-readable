@@ -7,6 +7,7 @@ import './App.css';
 import Header from './Header';
 import Home from './Home';
 import Categories from './Categories';
+import Category from './Category';
 import NotFound from './NotFound';
 
 const App = (props) => {
@@ -22,6 +23,7 @@ const App = (props) => {
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route exact path="/categories/" component={Categories} />
+					<Route path="/category/:category" component={Category} />
 					<Route path="*" component={NotFound} />
 				</Switch>
 			</div>
