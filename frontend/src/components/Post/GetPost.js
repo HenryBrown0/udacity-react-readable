@@ -19,16 +19,7 @@ class CategoryPanel extends Component {
 			<div>
 			{
 				p ?
-					<Post
-						key={postID}
-						id={postID}
-						timestamp={p.timestamp}
-						title={p.title}
-						body={p.body}
-						author={p.author}
-						voteScore={p.voteScore}
-						commentCount={p.commentCount}
-					/>
+					<Post post={p} />
 				: <p>No posts</p>
 			}
 			</div>

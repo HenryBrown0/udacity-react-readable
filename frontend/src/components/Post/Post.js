@@ -1,38 +1,27 @@
+//React
 import React from 'react';
+import PropTypes from 'prop-types';
+//Components
 import '../App.css';
 import Basic from './Basic';
+import Comments from './Comments';
 
 const Post = (props) => {
-	const { id, title, body, author, voteScore, commentCount } = props;
-	const date = new Date(props.timestamp).toDateString();
+	const { post } = props;
 	return (
 		<div>
-			<label htmlFor={id}>
-				<Basic
-					date={date}
-					title={title}
-					body={body}
-					author={author}
-					voteScore={voteScore}
-				 	commentCount={commentCount}
-				/>
-			</label>
-			<input id={id} type="checkbox"/>
-			<div className="modal">
-			  <div className="card fluid">
-			    <label htmlFor={id} className="close"></label>
-					<Basic
-						date={date}
-						title={title}
-						body={body}
-						author={author}
-						voteScore={voteScore}
-					 	commentCount={commentCount}
-					/>
-			  </div>
+			{ post ?
+			<div>
+				<Basic post={post}/>
+				<Comments postID={post.id} postCategory={post.category} />
 			</div>
+			 : null }
 		</div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.object,
+};
 
 export default Post;

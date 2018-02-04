@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 //components
 import '../App.css';
-import Post from '../Post/Post';
+import BasicPost from '../Post/Basic';
 
 //Content
 const CategoryPanel = (props) => {
@@ -17,16 +17,7 @@ const CategoryPanel = (props) => {
 		{
 			categoryPosts.length !== 0 ?
 				categoryPosts.map(p =>
-					<Post
-						key={p.id}
-						id={p.id}
-						timestamp={p.timestamp}
-						title={p.title}
-						body={p.body}
-						author={p.author}
-						voteScore={p.voteScore}
-						commentCount={p.commentCount}
-					/>
+					<BasicPost key={p.id} post={p} />
 				)
 			: <p>No posts</p>
 		}
