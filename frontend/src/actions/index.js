@@ -31,7 +31,7 @@ export function fetchCategoryPosts(category){
 }
 
 export function fetchPost(postID){
-	const request = axios.get(`${URL}/posts/${postID}`,{headers});
+	const request = axios.get(`${URL}posts/${postID}`,{headers});
 	return dispatch => {
 		request.then(({data}) => {
 			dispatch({

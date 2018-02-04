@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions';
+import { fetchPost } from '../../actions';
+//Utils
+import lodash from 'lodash';
 //components
 import '../App.css';
 import Post from '../Post/Post';
@@ -10,15 +12,15 @@ import Post from '../Post/Post';
 //Content
 class CategoryPanel extends Component {
 	componentDidMount(){
-		this.props.fetchPosts(this.props.postID);
+		this.props.fetchPost(this.props.postID);
 	}
 	render(){
-		const { postID } = this.props;
-		const p = posts[category] ? posts[category]['posts'] : [];
+		const { category, postID, posts } = this.props;
+		const p = posts[category] ? posts[category].filter(p => p.id === postID)[0] : null;
 		return (
 			<div>
 			{
-				post ?
+				p ?
 					<Post
 						key={postID}
 						id={postID}
@@ -44,7 +46,7 @@ function mapStateToProps ({ posts }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		fetchPosts: (data) => dispatch(fetchPosts(data))
+		fetchPost: (data) => dispatch(fetchPost(data))
   }
 }
 

@@ -12,9 +12,11 @@ function posts(state = {}, action){
 				[action.categoryPosts.category]: action.categoryPosts.posts
 			}
 		case FETCH_POST :
+			const { post } = action;
+			const statePost = state.post ? state.post[post.category] : null
 			return {
 				...state,
-				post: lodash.unionBy(state.post, action.post, 'id')
+				[post.category]: lodash.unionBy(statePost, [post], 'id')
 			}
 		default :
 			return state
