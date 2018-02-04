@@ -95,7 +95,7 @@ class Comments extends Component {
 							)
 						: <p>No comments</p> :
 						<div>
-							<div class="spinner-donut"></div>
+							<div className="spinner-donut"></div>
 							<p>Loading comments</p>
 						</div>
 					}
