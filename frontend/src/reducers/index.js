@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import posts from './posts';
+import comments from './comments';
 
 import {
 	FETCH_CATEGORIES,
@@ -20,5 +21,6 @@ function app(state = {}, action){
 
 export default combineReducers({
 	app,
-	posts
+	posts,
+	comments
 })
