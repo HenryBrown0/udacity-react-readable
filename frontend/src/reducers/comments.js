@@ -9,7 +9,7 @@ function comments(state = {}, action){
 			const { postID, postComments } = action;
 			return {
 				...state,
-				[postID]: lodash.unionBy(state[postID], postComments)
+				[postID]: lodash.unionBy(state[postID], postComments, 'id')
 			}
 		default :
 			return state
