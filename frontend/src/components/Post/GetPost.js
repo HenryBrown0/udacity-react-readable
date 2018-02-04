@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
 import { fetchPost } from '../../actions';
-//Utils
-import lodash from 'lodash';
 //components
 import '../App.css';
 import Post from '../Post/Post';

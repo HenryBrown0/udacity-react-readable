@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
 import { fetchCategoryPosts } from '../../actions';
-//Router
-import { Link } from 'react-router-dom';
 //Components
 import '../App.css';
 import CategoryPanel from './CategoryPanel';
