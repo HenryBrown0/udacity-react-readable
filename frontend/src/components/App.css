@@ -10,11 +10,20 @@
 .btn{
 	cursor: pointer;
 }
-.up:hover{
+.delete{
+	margin-right: 0.2rem;
+}
+.edit{
+	margin-left: 0.2rem;
+}
+.green:hover{
 	color: green;
 }
-.down:hover{
+.red:hover{
 	color: red;
+}
+.yellow:hover{
+	color: yellow;
 }
 textarea {
 	resize: none;

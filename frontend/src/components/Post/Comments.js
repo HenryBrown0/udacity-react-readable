@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { fetchPostComments, addPostComment } from '../../actions/comments';
 //components
 import '../App.css';
-import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
+import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit } from 'react-icons/lib/md';
 
 //Content
 class Comments extends Component {
@@ -149,19 +149,21 @@ class Comments extends Component {
 												<MdArrowDropUp
 													height="2em"
 													width="2em"
-													className="btn up"
+													className="btn green"
 												/>
 												{c.voteScore}
 												<MdArrowDropDown
 													height="2em"
 													width="2em"
-													className="btn down"
+													className="btn red"
 												/>
 											</div>
 											<div className="col-sm-4">
 												{new Date(c.timestamp).toDateString()}
 											</div>
 											<div className="col-sm-4">
+												<MdDelete className="btn delete red" />
+												<MdEdit className="btn edit yellow" />
 											</div>
 										</div>
 									</div>

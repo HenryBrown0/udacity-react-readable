@@ -24,9 +24,9 @@ const Basic = (props) => {
 				<div className="container section">
 					<div className="row">
 						<div className="col-sm-4">
-							<MdArrowDropUp height="2em" width="2em" className="btn up" />
+							<MdArrowDropUp height="2em" width="2em" className="btn green" />
 							{post.voteScore}
-							<MdArrowDropDown height="2em" width="2em" className="btn down" />
+							<MdArrowDropDown height="2em" width="2em" className="btn red" />
 						</div>
 						<div className="col-sm-4">
 							<Link to={`../../${post.category}/${post.id}`}>
