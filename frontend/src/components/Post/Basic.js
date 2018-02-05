@@ -1,6 +1,8 @@
 //React
 import React from 'react';
 import PropTypes from 'prop-types';
+//Router
+import { Link } from 'react-router-dom';
 //Components
 import '../App.css';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
@@ -27,11 +29,13 @@ const Basic = (props) => {
 							<MdArrowDropDown height="2em" width="2em" className="btn down" />
 						</div>
 						<div className="col-sm-4">
+							<Link to={`../../${post.category}/${post.id}`}>
 						{
 							post.commentCount === 1
 							? `${post.commentCount} comment`
 							: `${post.commentCount} comments`
 						}
+							</Link>
 						</div>
 						<div className="col-sm-4">{date}</div>
 					</div>
