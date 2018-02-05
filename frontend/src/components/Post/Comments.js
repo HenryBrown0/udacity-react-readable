@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //Redux
 import { connect } from 'react-redux';
-import { fetchPostComments } from '../../actions/comments';
+import { fetchPostComments, addPostComment } from '../../actions/comments';
 //components
 import '../App.css';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
@@ -12,6 +12,9 @@ import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
 class Comments extends Component {
 	state = {
     order: 'dateNewest',
+		author: '',
+		body: '',
+		disabled: false
   };
 
 	componentDidMount(){
@@ -19,7 +22,7 @@ class Comments extends Component {
 	};
 
 	handleChange = event => {
-    this.setState({ order: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
 	dateNewest = (a, b) => {
@@ -38,19 +41,89 @@ class Comments extends Component {
 		return a.voteScore  - b.voteScore;
 	};
 
+	escapeString = text => {
+		const map = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#039;'
+		};
+		return text.trim().replace(/[&<>"']/g, function(m) { return map[m]; });
+	};
+
+	generateUUID = () => {
+    let d = new Date().getTime();
+    if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
+        d += performance.now();
+    }
+    return 'xxxxxxxx4xxxyxxxxxxxxxxx'.replace(/[xy]/g, function (c)  {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+	}
+	newComment = event => {
+		event.preventDefault();
+		this.setState({
+			disabled: true
+		});
+		let { author, body } = this.state;
+		author = this.escapeString(author);
+		body = this.escapeString(body);
+
+		if(author && body){
+			const payload = {
+				id: this.generateUUID(),
+				parentId: this.props.postID,
+				timestamp: new Date().getTime(),
+				body,
+		    author,
+			};
+
+			this.props.addPostComment(payload);
+		}
+	};
+
 	render(){
 		const { comments, postID } = this.props;
-		const { order } = this.state;
+		const { order, author, body, disabled } = this.state;
+
 		return (
 			<div>
 				<form>
 					<fieldset>
-						<legend>Comments</legend>
+						<legend>New Comment</legend>
+						<div className="input-group fluid">
+							<input
+								type="text"
+								value={author}
+								name="author"
+								onChange={this.handleChange}
+								placeholder="Author"
+								disabled={disabled}
+							/>
+						</div>
+						<div className="input-group fluid">
+							<textarea
+								rows="3"
+								value={body}
+								name="body"
+								onChange={this.handleChange}
+								placeholder="Body"
+							/>
+						</div>
 						<div className="input-group vertical">
-							<label htmlFor="orderBy">Order By</label>
+							<button onClick={this.newComment}>Submit</button>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Order By</legend>
+						<div className="input-group vertical">
 							<select
 								id="orderBy"
 								value={order}
+								name="order"
 		          	onChange={this.handleChange}
 							>
 								<option value="dateNewest">Date [newest]</option>
@@ -61,6 +134,7 @@ class Comments extends Component {
 						</div>
 					</fieldset>
 					<fieldset>
+						<legend>Comments</legend>
 					{
 						comments[postID] ? comments[postID].length !== 0 ?
 							comments[postID].sort(this[order]).map(c =>
@@ -93,11 +167,7 @@ class Comments extends Component {
 									</div>
 								</div>
 							)
-						: <p>No comments</p> :
-						<div>
-							<div className="spinner-donut"></div>
-							<p>Loading comments</p>
-						</div>
+						: <p>No comments</p> : <p>No comments</p>
 					}
 					</fieldset>
 				</form>
@@ -114,7 +184,8 @@ function mapStateToProps ({ comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		fetchPostComments: (data) => dispatch(fetchPostComments(data))
+		fetchPostComments: (data) => dispatch(fetchPostComments(data)),
+		addPostComment: (data) => dispatch(addPostComment(data))
   }
 }
 
