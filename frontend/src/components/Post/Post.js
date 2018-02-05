@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 //Components
 import '../App.css';
 import Basic from './Basic';
-import Comments from './Comments';
+import Comments from '../Comment/Container';
 
 const Post = (props) => {
 	const { post } = props;
