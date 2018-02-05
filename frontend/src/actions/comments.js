@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const FETCH_POST_COMMENTS = 'FETCH_POST_COMMENTS';
 export const ADD_POST_COMMENT = 'ADD_POST_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
 
 const URL = 'http://localhost:3001/';
@@ -26,6 +27,22 @@ export function addPostComment(newComment){
 			dispatch({
 				type: ADD_POST_COMMENT,
 				newComment
+			})
+		})
+		.catch(function (error) {
+    	console.log(error);
+  	});
+	}
+}
+
+export function deleteComment(deleteComment){
+	const request = axios.delete(`${URL}comments/${deleteComment.id}`,{headers});
+	return dispatch => {
+		request.then((response) => {
+			console.log(response)
+			dispatch({
+				type: DELETE_COMMENT,
+				deleteComment
 			})
 		})
 		.catch(function (error) {

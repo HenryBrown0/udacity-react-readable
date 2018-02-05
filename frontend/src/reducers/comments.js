@@ -2,6 +2,7 @@ import lodash from 'lodash';
 import {
 	FETCH_POST_COMMENTS,
 	ADD_POST_COMMENT,
+	DELETE_COMMENT,
 } from '../actions/comments';
 
 function comments(state = {}, action){
@@ -28,6 +29,12 @@ function comments(state = {}, action){
 			return {
 				...state,
 			}
+			case DELETE_COMMENT :
+				const { deleteComment } = action;
+				return {
+					...state,
+					[deleteComment.parentId]: state[deleteComment.parentId].filter(p => p.id !== deleteComment.id)
+				}
 		/*case VOTE_COMMENT :
 			const { voteComment } = action;
 			console.log(newComment.parentId)

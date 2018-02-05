@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //Redux
 import { connect } from 'react-redux';
-import { fetchPostComments, addPostComment } from '../../actions/comments';
+import { fetchPostComments, addPostComment, deleteComment } from '../../actions/comments';
 //components
 import '../App.css';
 import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit } from 'react-icons/lib/md';
@@ -63,6 +63,7 @@ class Comments extends Component {
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
 	}
+
 	newComment = event => {
 		event.preventDefault();
 		this.setState({
@@ -84,7 +85,7 @@ class Comments extends Component {
 			this.props.addPostComment(payload);
 		}
 	};
-
+	
 	render(){
 		const { comments, postID } = this.props;
 		const { order, author, body, disabled } = this.state;
@@ -187,7 +188,8 @@ function mapStateToProps ({ comments }) {
 function mapDispatchToProps (dispatch) {
   return {
 		fetchPostComments: (data) => dispatch(fetchPostComments(data)),
-		addPostComment: (data) => dispatch(addPostComment(data))
+		addPostComment: (data) => dispatch(addPostComment(data)),
+		deleteComment: (data) => dispatch(deleteComment(data))
   }
 }
 
