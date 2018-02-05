@@ -16,3 +16,7 @@
 .down:hover{
 	color: red;
 }
+textarea {
+	resize: none;
+	width: 100%;
+}
