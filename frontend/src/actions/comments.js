@@ -1,6 +1,6 @@
 import axios from 'axios';
 export const FETCH_POST_COMMENTS = 'FETCH_POST_COMMENTS';
-export const ADD_POST_COMMENT = 'ADD_POST_COMMENT';
+export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
 
@@ -20,13 +20,12 @@ export function fetchPostComments(postID){
 	}
 }
 
-export function addPostComment(newComment){
+export function addComment(newComment){
 	const request = axios.post(`${URL}comments`,newComment,{headers});
 	return dispatch => {
 		request.then((response) => {
-			console.log(response)
 			dispatch({
-				type: ADD_POST_COMMENT,
+				type: ADD_COMMENT,
 				newComment
 			})
 		})

@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 import {
 	FETCH_POST_COMMENTS,
-	ADD_POST_COMMENT,
+	ADD_COMMENT,
 	DELETE_COMMENT,
 } from '../actions/comments';
 
@@ -20,7 +20,7 @@ function comments(state = {}, action){
 					[postID]: []
 				}
 			}
-		case ADD_POST_COMMENT :
+		case ADD_COMMENT :
 			const { newComment } = action;
 			state[newComment.parentId].push({
 				id: newComment.id,

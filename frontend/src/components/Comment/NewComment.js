@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //Redux
 import { connect } from 'react-redux';
-import { addPostComment } from '../../actions/comments';
+import { addComment } from '../../actions/comments';
 //components
 import '../App.css';
 //Content
@@ -54,7 +54,7 @@ class NewComment extends Component {
 				body,
 		    author,
 			};
-			this.props.addPostComment(payload);
+			this.props.addComment(payload);
 		}
 	};
 
@@ -96,7 +96,7 @@ function mapStateToProps ({ comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		addPostComment: (data) => dispatch(addPostComment(data))
+		addComment: (data) => dispatch(addComment(data))
   }
 }
 
