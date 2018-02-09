@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //Redux
 import { connect } from 'react-redux';
-import { deleteComment } from '../../actions/comments';
+import { deleteComment, voteComment } from '../../actions/comments';
 //components
 import '../App.css';
 import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit }
@@ -15,6 +15,16 @@ class Comment extends Component {
 	deleteComment = event => {
 		event.preventDefault();
 		this.props.deleteComment(this.props.c);
+	}
+
+	voteUp = event => {
+		event.preventDefault();
+		this.props.voteComment({comment: this.props.c, type: "upVote"})
+	}
+
+	voteDown = event => {
+		event.preventDefault();
+		this.props.voteComment({comment: this.props.c, type: "downVote"})
 	}
 
 	render(){
@@ -31,12 +41,14 @@ class Comment extends Component {
 							<MdArrowDropUp
 								height="2em"
 								width="2em"
+								onClick={this.voteUp}
 								className="btn green"
 							/>
 							{c.voteScore}
 							<MdArrowDropDown
 								height="2em"
 								width="2em"
+								onClick={this.voteDown}
 								className="btn red"
 							/>
 						</div>
@@ -64,7 +76,8 @@ function mapStateToProps ({ comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		deleteComment: (data) => dispatch(deleteComment(data))
+		deleteComment: (data) => dispatch(deleteComment(data)),
+		voteComment: (data) => dispatch(voteComment(data))
   }
 }
 

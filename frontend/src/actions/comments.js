@@ -51,15 +51,16 @@ export function deleteComment(deleteComment){
 	}
 }
 
-export function vote(voteComment){
-	const request = axios.post(`${URL}comments/${voteComment.id}`,voteComment.vote,{headers});
+export function voteComment(vote){
+	console.log(vote)
+	const request = axios.post(`${URL}comments/${vote.comment.id}`,vote.type,{headers});
 	return dispatch => {
 		request.then((response) => {
 			console.log(response)
-			dispatch({
+			/*dispatch({
 				type: VOTE_COMMENT,
 				voteComment
-			})
+			})*/
 		})
 		.catch(function (error) {
     	console.log(error);
