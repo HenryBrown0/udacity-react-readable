@@ -13,7 +13,8 @@ export function fetchPostComments(postID){
 		request.then(({data}) => {
 			dispatch({
 				type: FETCH_POST_COMMENTS,
-				postComments: data
+				postComments: data,
+				postID: postID
 			})
 		})
 	}

@@ -67,9 +67,9 @@ class Container extends Component {
 					<fieldset>
 						<legend>Comments</legend>
 					{
-						comments[postID] ? comments[postID].length !== 0 ?
+						comments[postID] ? comments[postID].length > 0 ?
 							comments[postID].sort(this[order]).map(c =>
-								<Comment c={c} />
+								<Comment key={c.id} c={c} />
 							)
 						: <p>No comments</p> : <p>No comments</p>
 					}
