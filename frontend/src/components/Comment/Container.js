@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //Redux
 import { connect } from 'react-redux';
-import { fetchPostComments, addPostComment, deleteComment } from '../../actions/comments';
+import { fetchPostComments } from '../../actions/comments';
 //components
 import '../App.css';
-import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit } from 'react-icons/lib/md';
 import NewComment from './NewComment';
 import Comment from './Comment';
 
@@ -89,8 +88,6 @@ function mapStateToProps ({ comments }) {
 function mapDispatchToProps (dispatch) {
   return {
 		fetchPostComments: (data) => dispatch(fetchPostComments(data)),
-		addPostComment: (data) => dispatch(addPostComment(data)),
-		deleteComment: (data) => dispatch(deleteComment(data))
   }
 }
 

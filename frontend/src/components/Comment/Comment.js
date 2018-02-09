@@ -14,7 +14,6 @@ class Comment extends Component {
 
 	deleteComment = event => {
 		event.preventDefault();
-		console.log(this.props.c.id)
 		this.props.deleteComment(this.props.c);
 	}
 
