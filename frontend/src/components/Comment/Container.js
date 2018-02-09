@@ -8,6 +8,7 @@ import { fetchPostComments, addPostComment, deleteComment } from '../../actions/
 import '../App.css';
 import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit } from 'react-icons/lib/md';
 import NewComment from './NewComment';
+import Comment from './Comment';
 
 //Content
 class Container extends Component {
@@ -68,36 +69,7 @@ class Container extends Component {
 					{
 						comments[postID] ? comments[postID].length !== 0 ?
 							comments[postID].sort(this[order]).map(c =>
-								<div className="card fluid" key={c.id}>
-									<div className="section left">
-										<p>{c.author}</p>
-										<p>{c.body}</p>
-									</div>
-									<div className="container section">
-										<div className="row">
-											<div className="col-sm-4">
-												<MdArrowDropUp
-													height="2em"
-													width="2em"
-													className="btn green"
-												/>
-												{c.voteScore}
-												<MdArrowDropDown
-													height="2em"
-													width="2em"
-													className="btn red"
-												/>
-											</div>
-											<div className="col-sm-4">
-												{new Date(c.timestamp).toDateString()}
-											</div>
-											<div className="col-sm-4">
-												<MdDelete className="btn delete red" />
-												<MdEdit className="btn edit yellow" />
-											</div>
-										</div>
-									</div>
-								</div>
+								<Comment c={c} />
 							)
 						: <p>No comments</p> : <p>No comments</p>
 					}
