@@ -30,9 +30,6 @@ const App = (props) => {
 					<Route exact path="/:category/:postID/" component={Post} />
 					<Route path="*" component={NotFound} />
 				</Switch>
-				<Link to="../../new/post/">
-					New post
-				</Link>
 			</div>
 		</div>
 	);
