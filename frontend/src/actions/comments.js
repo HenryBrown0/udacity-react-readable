@@ -53,7 +53,9 @@ export function deleteComment(deleteComment){
 
 export function voteComment(vote){
 	console.log(vote)
-	const request = axios.post(`${URL}comments/${vote.comment.id}`,vote.type,{headers});
+	console.log(vote.type)
+	const request = axios
+		.post(`${URL}comments/${vote.comment.id}`,{ option: vote.type },{headers});
 	return dispatch => {
 		request.then((response) => {
 			console.log(response)
