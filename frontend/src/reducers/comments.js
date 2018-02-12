@@ -3,6 +3,7 @@ import {
 	FETCH_POST_COMMENTS,
 	ADD_COMMENT,
 	DELETE_COMMENT,
+	VOTE_COMMENT,
 } from '../actions/comments';
 
 function comments(state = {}, action){
@@ -12,7 +13,8 @@ function comments(state = {}, action){
 			if(postComments[0]){
 				return {
 					...state,
-					[postComments[0].parentId]: lodash.unionBy(state[postComments[0].parentId], postComments, 'id')
+					[postComments[0].parentId]:
+						lodash.unionBy(state[postComments[0].parentId], postComments, 'id')
 				}
 			}else{
 				return {
@@ -39,7 +41,15 @@ function comments(state = {}, action){
 			const { deleteComment } = action;
 			return {
 				...state,
-				[deleteComment.parentId]: state[deleteComment.parentId].filter(p => p.id !== deleteComment.id)
+				[deleteComment.parentId]: state[deleteComment.parentId]
+					.filter(c => c.id !== deleteComment.id)
+			}
+		case VOTE_COMMENT :
+			const { voteComment } = action;
+			return {
+				...state,
+				[voteComment.parentId]: state[voteComment.parentId]
+					.filter(c => c.id !== voteComment.id).concat(voteComment)
 			}
 		default :
 			return state
