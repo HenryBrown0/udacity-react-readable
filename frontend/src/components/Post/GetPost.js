@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
-import { fetchPost } from '../../actions';
+import { fetchPost } from '../../actions/posts';
 //components
 import '../App.css';
 import Post from '../Post/Post';

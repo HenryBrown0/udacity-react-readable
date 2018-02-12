@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 //Redux
 import { connect } from 'react-redux';
-import { fetchCategoryPosts } from '../../actions';
+import { fetchCategoryPosts } from '../../actions/posts';
 //Components
 import '../App.css';
 import CategoryPanel from './CategoryPanel';

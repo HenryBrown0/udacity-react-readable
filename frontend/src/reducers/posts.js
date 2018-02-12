@@ -2,7 +2,8 @@ import lodash from 'lodash';
 import {
 	FETCH_CATEGORY_POSTS,
 	FETCH_POST,
-} from '../actions';
+	ADD_POST,
+} from '../actions/posts';
 
 function posts(state = {}, action){
 	switch (action.type){
@@ -17,6 +18,12 @@ function posts(state = {}, action){
 			return {
 				...state,
 				[post.category]: lodash.unionBy(statePost, [post], 'id')
+			}
+		case ADD_POST :
+			const { newPost } = action;
+			state[newPost.category].push({ newPost })
+			return {
+				...state,
 			}
 		default :
 			return state
