@@ -2,7 +2,7 @@ import axios from 'axios';
 export const FETCH_POST_COMMENTS = 'FETCH_POST_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const VOTE_COMMENT = 'VOTE_COMMENT';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 const URL = 'http://localhost:3001/';
 const headers = { 'Authorization': 'whatever-you-want' };
@@ -17,6 +17,9 @@ export function fetchPostComments(postID){
 				postID: postID
 			})
 		})
+		.catch(function (error) {
+    	console.log(error);
+  	});
 	}
 }
 
@@ -39,7 +42,6 @@ export function deleteComment(deleteComment){
 	const request = axios.delete(`${URL}comments/${deleteComment.id}`,{headers});
 	return dispatch => {
 		request.then((response) => {
-			console.log(response)
 			dispatch({
 				type: DELETE_COMMENT,
 				deleteComment
@@ -51,16 +53,32 @@ export function deleteComment(deleteComment){
 	}
 }
 
-export function voteComment(vote){
-	console.log(vote)
+export function voteComment(vote){ 
 	const request = axios
 		.post(`${URL}comments/${vote.comment.id}`,{ option: vote.type },{headers});
 	return dispatch => {
 		request.then((response) => {
-			console.log(response)
 			dispatch({
-				type: VOTE_COMMENT,
-				voteComment: response.data
+				type: UPDATE_COMMENT,
+				comment: response.data
+			})
+		})
+		.catch(function (error) {
+    	console.log(error);
+  	});
+	}
+}
+
+export function editComment(edit){
+	console.log(edit)
+	const request = axios
+		.put(`${URL}comments/${edit.id}`,
+			{ timestamp: edit.timestamp, body: edit.body  },{headers});
+	return dispatch => {
+		request.then((response) => {
+			dispatch({
+				type: UPDATE_COMMENT,
+				comment: response.data
 			})
 		})
 		.catch(function (error) {

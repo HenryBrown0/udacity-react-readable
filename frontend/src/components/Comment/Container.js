@@ -47,6 +47,8 @@ class Container extends Component {
 			<div>
 				<form>
 					<NewComment parentId={postID} />
+				</form>
+				<form>
 					<fieldset>
 						<legend>Order By</legend>
 						<div className="input-group vertical">
@@ -63,17 +65,17 @@ class Container extends Component {
 							</select>
 						</div>
 					</fieldset>
-					<fieldset>
-						<legend>Comments</legend>
-					{
-						comments[postID] ? comments[postID].length > 0 ?
-							comments[postID].sort(this[order]).map(c =>
-								<Comment key={c.id} c={c} />
-							)
-						: <p>No comments</p> : <p>No comments</p>
-					}
-					</fieldset>
 				</form>
+				<fieldset>
+					<legend>Comments</legend>
+				{
+					comments[postID] ? comments[postID].length > 0 ?
+						comments[postID].sort(this[order]).map(c =>
+							<Comment key={c.id} c={c} />
+						)
+					: <p>No comments</p> : <p>No comments</p>
+				}
+				</fieldset>				
 			</div>
 		);
 	}

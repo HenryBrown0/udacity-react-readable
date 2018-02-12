@@ -8,7 +8,7 @@ import { deleteComment, voteComment } from '../../actions/comments';
 import '../App.css';
 import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit }
   from 'react-icons/lib/md';
-
+import EditComment from './EditComment';
 //Content
 class Comment extends Component {
 
@@ -60,7 +60,18 @@ class Comment extends Component {
 								onClick={this.deleteComment}
 								className="btn delete red"
 							/>
-							<MdEdit className="btn edit yellow" />
+							<label htmlFor={`editComment${c.id}`}>
+								<MdEdit className="btn edit yellow" />
+							</label>
+
+							<input id={`editComment${c.id}`} type="checkbox"/>
+							<div className="modal">
+							  <div className="card fluid">
+							    <label htmlFor={`editComment${c.id}`} className="close"></label>
+									<EditComment c={c} />
+							  </div>
+							</div>
+
 						</div>
 					</div>
 				</div>

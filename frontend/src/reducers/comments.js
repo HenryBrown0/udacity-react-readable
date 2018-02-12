@@ -3,7 +3,7 @@ import {
 	FETCH_POST_COMMENTS,
 	ADD_COMMENT,
 	DELETE_COMMENT,
-	VOTE_COMMENT,
+	UPDATE_COMMENT,
 } from '../actions/comments';
 
 function comments(state = {}, action){
@@ -44,12 +44,12 @@ function comments(state = {}, action){
 				[deleteComment.parentId]: state[deleteComment.parentId]
 					.filter(c => c.id !== deleteComment.id)
 			}
-		case VOTE_COMMENT :
-			const { voteComment } = action;
+		case UPDATE_COMMENT :
+			const { comment } = action;
 			return {
 				...state,
-				[voteComment.parentId]: state[voteComment.parentId]
-					.filter(c => c.id !== voteComment.id).concat(voteComment)
+				[comment.parentId]: state[comment.parentId]
+					.filter(c => c.id !== comment.id).concat(comment)
 			}
 		default :
 			return state
