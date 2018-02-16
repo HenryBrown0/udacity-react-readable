@@ -8,6 +8,7 @@ export function fetchCategories(){
 	const request = axios.get(`${URL}categories`,{headers});
 	return dispatch => {
 		request.then(({data}) => {
+			console.log("Fetch categories successful")
 			dispatch({
 				type: FETCH_CATEGORIES,
 				categories: data.categories

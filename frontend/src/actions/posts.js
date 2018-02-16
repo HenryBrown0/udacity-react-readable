@@ -12,6 +12,7 @@ export function fetchCategoryPosts(category){
 	const request = axios.get(`${URL}${category}/posts`,{headers});
 	return dispatch => {
 		request.then(({data}) => {
+			console.log("Fetch category posts successful")
 			dispatch({
 				type: FETCH_CATEGORY_POSTS,
 				categoryPosts: { category: category, posts: data}
@@ -24,6 +25,7 @@ export function fetchPost(postID){
 	const request = axios.get(`${URL}posts/${postID}`,{headers});
 	return dispatch => {
 		request.then(({data}) => {
+			console.log("Fetch post successful")
 			dispatch({
 				type: FETCH_POST,
 				post: data
