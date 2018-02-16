@@ -66,7 +66,7 @@ export function deletePost(deletePost){
 
 export function votePost(vote){
 	const request = axios
-		.post(`${URL}comments/${vote.post.id}`,{ option: vote.type },{headers});
+		.post(`${URL}posts/${vote.post.id}`,{ option: vote.type },{headers});
 	return dispatch => {
 		request.then((response) => {
 			console.log("Vote post successful")

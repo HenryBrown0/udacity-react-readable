@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 //Redux
 import { connect } from 'react-redux';
-import { deletePost } from '../../actions/posts';
+import { deletePost, votePost } from '../../actions/posts';
 //Components
 import '../App.css';
 import EditPost from './EditPost';
@@ -15,9 +15,19 @@ import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit }
 const Basic = (props) => {
 	const { post } = props;
 	const date = post ? new Date(post.timestamp).toDateString() : null;
+
 	function deletePost() {
 		props.deletePost(post)
 	}
+
+	function voteUp() {
+		props.votePost({post, type: "upVote"})
+	}
+
+	function voteDown() {
+		props.votePost({post, type: "downVote"})
+	}
+
 	return (
 		<div className="card fluid">
 			<div className="section left">
@@ -30,9 +40,19 @@ const Basic = (props) => {
 			<div className="container section">
 				<div className="row">
 					<div className="col-sm-3">
-						<MdArrowDropUp height="2em" width="2em" className="btn green" />
+						<MdArrowDropUp
+							height="2em"
+							width="2em"
+							onClick={voteUp}
+							className="btn green"
+						/>
 						{post.voteScore}
-						<MdArrowDropDown height="2em" width="2em" className="btn red" />
+						<MdArrowDropDown
+							height="2em"
+							width="2em"
+							onClick={voteDown}
+							className="btn red"
+						/>
 					</div>
 					<div className="col-sm-3">
 						<Link to={`../../${post.category}/${post.id}`}>
@@ -76,7 +96,8 @@ function mapStateToProps ({ comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		deletePost: (data) => dispatch(deletePost(data))
+		deletePost: (data) => dispatch(deletePost(data)),
+		votePost: (data) => dispatch(votePost(data))
   }
 }
 
