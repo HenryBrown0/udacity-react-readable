@@ -3,6 +3,7 @@ import {
 	FETCH_CATEGORY_POSTS,
 	FETCH_POST,
 	ADD_POST,
+	DELETE_POST,
 } from '../actions/posts';
 
 function posts(state = {}, action){
@@ -24,6 +25,13 @@ function posts(state = {}, action){
 			state[newPost.category].push({ newPost })
 			return {
 				...state,
+			}
+		case DELETE_POST :
+			const { deletePost } = action;
+			return {
+				...state,
+				[deletePost.category]: state[deletePost.category]
+					.filter(p => p.id !== deletePost.id)
 			}
 		default :
 			return state

@@ -3,13 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 //Router
 import { Link } from 'react-router-dom';
+//Redux
+import { connect } from 'react-redux';
+import { deletePost } from '../../actions/posts';
 //Components
 import '../App.css';
-import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit } from 'react-icons/lib/md';
+import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit }
+	from 'react-icons/lib/md';
 
 const Basic = (props) => {
 	const { post } = props;
 	const date = post ? new Date(post.timestamp).toDateString() : null;
+	function deletePost() {
+		props.deletePost(post)
+	}
 	return (
 		<div>
 		{ post ?
@@ -39,7 +46,12 @@ const Basic = (props) => {
 						</div>
 						<div className="col-sm-3">{date}</div>
 						<div className="col-sm-3">
-							<MdDelete height="1em" width="1em" className="btn delete red" />
+							<MdDelete
+								onClick={deletePost}
+								height="1em"
+								width="1em"
+								className="btn delete red"
+							/>
 							<MdEdit height="1em" width="1em" className="btn edit yellow" />
 						</div>
 					</div>
@@ -50,8 +62,25 @@ const Basic = (props) => {
   );
 }
 
+
+
+function mapStateToProps ({ comments }) {
+  return {
+		comments
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+		deletePost: (data) => dispatch(deletePost(data))
+  }
+}
+
 Basic.propTypes = {
   post: PropTypes.object,
 };
 
-export default Basic;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Basic)

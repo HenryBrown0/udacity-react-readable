@@ -36,7 +36,6 @@ export function addPost(newPost){
 	const request = axios.post(`${URL}posts`,newPost,{headers});
 	return dispatch => {
 		request.then((response) => {
-			console.log(response)
 			console.log("Add post successful")
 			dispatch({
 				type: ADD_POST,
