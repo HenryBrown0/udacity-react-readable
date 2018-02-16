@@ -24,7 +24,7 @@ class Home extends Component {
 							<h2>
 								{c.name}
 								<small>
-									<Link to={"category/"+c.path+"/"}>View categorie individually</Link>
+									<Link to={"category/"+c.path+"/"}>View category individually</Link>
 								</small>
 							</h2>
 							<GetCategory category={c.name} />
