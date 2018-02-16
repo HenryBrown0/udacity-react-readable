@@ -72,7 +72,7 @@ export function votePost(vote){
 			console.log("Vote post successful")
 			dispatch({
 				type: UPDATE_POST,
-				post: response.data
+				updatePost: response.data
 			})
 		})
 		.catch(function (error) {
@@ -90,7 +90,7 @@ export function editPost(edit){
 			console.log("Edit post successful")
 			dispatch({
 				type: UPDATE_POST,
-				post: response.data
+				updatePost: response.data
 			})
 		})
 		.catch(function (error) {

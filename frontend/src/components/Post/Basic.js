@@ -8,9 +8,10 @@ import { connect } from 'react-redux';
 import { deletePost } from '../../actions/posts';
 //Components
 import '../App.css';
+import EditPost from './EditPost';
 import { MdArrowDropDown, MdArrowDropUp, MdDelete, MdEdit }
 	from 'react-icons/lib/md';
-
+//Content
 const Basic = (props) => {
 	const { post } = props;
 	const date = post ? new Date(post.timestamp).toDateString() : null;
@@ -18,46 +19,49 @@ const Basic = (props) => {
 		props.deletePost(post)
 	}
 	return (
-		<div>
-		{ post ?
-			<div className="card fluid">
-				<div className="section left">
-					<h3>
-						{post.title}
-						<small>- {post.author}</small>
-					</h3>
-					<p>{post.body}</p>
-				</div>
-				<div className="container section">
-					<div className="row">
-						<div className="col-sm-3">
-							<MdArrowDropUp height="2em" width="2em" className="btn green" />
-							{post.voteScore}
-							<MdArrowDropDown height="2em" width="2em" className="btn red" />
+		<div className="card fluid">
+			<div className="section left">
+				<h3>
+					{post.title}
+					<small>- {post.author}</small>
+				</h3>
+				<p>{post.body}</p>
+			</div>
+			<div className="container section">
+				<div className="row">
+					<div className="col-sm-3">
+						<MdArrowDropUp height="2em" width="2em" className="btn green" />
+						{post.voteScore}
+						<MdArrowDropDown height="2em" width="2em" className="btn red" />
+					</div>
+					<div className="col-sm-3">
+						<Link to={`../../${post.category}/${post.id}`}>
+					{
+						post.commentCount === 1
+						? `${post.commentCount} comment`
+						: `${post.commentCount} comments`
+					}
+						</Link>
+					</div>
+					<div className="col-sm-3">{date}</div>
+					<div className="col-sm-3">
+						<MdDelete onClick={deletePost} className="btn delete red" />
+
+						<label htmlFor={`editPost${post.id}`}>
+							<MdEdit className="btn edit yellow" />
+						</label>
+
+						<input id={`editPost${post.id}`} type="checkbox"/>
+						<div className="modal">
+						  <div className="card fluid">
+						    <label htmlFor={`editPost${post.id}`} className="close"></label>
+								<EditPost p={post} />
+						  </div>
 						</div>
-						<div className="col-sm-3">
-							<Link to={`../../${post.category}/${post.id}`}>
-						{
-							post.commentCount === 1
-							? `${post.commentCount} comment`
-							: `${post.commentCount} comments`
-						}
-							</Link>
-						</div>
-						<div className="col-sm-3">{date}</div>
-						<div className="col-sm-3">
-							<MdDelete
-								onClick={deletePost}
-								height="1em"
-								width="1em"
-								className="btn delete red"
-							/>
-							<MdEdit height="1em" width="1em" className="btn edit yellow" />
-						</div>
+
 					</div>
 				</div>
 			</div>
-		: null }
 		</div>
   );
 }

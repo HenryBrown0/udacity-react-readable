@@ -4,6 +4,7 @@ import {
 	FETCH_POST,
 	ADD_POST,
 	DELETE_POST,
+	UPDATE_POST,
 } from '../actions/posts';
 
 function posts(state = {}, action){
@@ -32,6 +33,13 @@ function posts(state = {}, action){
 				...state,
 				[deletePost.category]: state[deletePost.category]
 					.filter(p => p.id !== deletePost.id)
+			}
+		case UPDATE_POST :
+			const { updatePost } = action;
+			return {
+				...state,
+				[updatePost.category]: state[updatePost.category]
+					.filter(p => p.id !== updatePost.id).concat(updatePost)
 			}
 		default :
 			return state
