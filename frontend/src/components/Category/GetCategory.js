@@ -7,14 +7,10 @@ import { fetchCategoryPosts } from '../../actions/posts';
 import '../App.css';
 import CategoryPanel from './CategoryPanel';
 //Content
-class GetCategory extends Component {
-	componentDidMount(){
-		this.props.fetchCategoryPosts(this.props.category);
-	}
-	render() {
-		const { category } = this.props;
-		return (<CategoryPanel category={category} />);
-	}
+const GetCategory = (props) => {
+	props.fetchCategoryPosts(props.category);
+	const { category } = props;
+	return (<CategoryPanel category={category} />);
 }
 
 function mapStateToProps ({ posts }) {

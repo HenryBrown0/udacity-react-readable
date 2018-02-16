@@ -8,27 +8,23 @@ import { Link } from 'react-router-dom';
 //Components
 import '../App.css';
 //Content
-class Categories extends Component {
-	componentDidMount(){
-		this.props.fetchCategories();
-	}
-	render() {
-		const { categories } = this.props;
-		return (
-			<div className="row center">
-				<div className="col-sm-12 col-md-6 col-lg-4 col-md-offset-3
-					col-lg-offset-4">
-				{
-					categories ? categories.map(c =>
-						<Link key={c.path} to={"/category/"+c.path+"/"} className="button">
-							{c.name}
-						</Link>
-					) : null
-				}
-				</div>
+const Categories = (props) => {
+	props.fetchCategories();
+	const { categories } = props;
+	return (
+		<div className="row center">
+			<div className="col-sm-12 col-md-6 col-lg-4 col-md-offset-3
+				col-lg-offset-4">
+			{
+				categories ? categories.map(c =>
+					<Link key={c.path} to={"/category/"+c.path+"/"} className="button">
+						{c.name}
+					</Link>
+				) : null
+			}
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 function mapStateToProps ({ app }) {
