@@ -1,6 +1,5 @@
 //React
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 //Redux
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../actions';
@@ -35,6 +34,10 @@ class NewPost extends Component {
 		return text.trim().replace(/[&<>"']/g, function(m) { return map[m]; });
 	};
 
+	/*
+		uuid from:
+		https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+	*/
   generateUUID = () => {
     let d = new Date().getTime();
     if(typeof performance !== 'undefined'
@@ -136,9 +139,6 @@ function mapDispatchToProps (dispatch) {
 		addPost: (data) => dispatch(addPost(data))
   }
 }
-
-NewPost.propTypes = {
-};
 
 export default connect(
   mapStateToProps,
